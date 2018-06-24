@@ -29,7 +29,7 @@ We truncate at 63 chars because some Kubernetes name fields are limited to this 
 */}}
 {{- define "gogs.mysql.fullname" -}}
 {{- $name := default "mysql" .Values.mysql.nameOverride -}}
-{{- printf "%s-%s:%s" .Release.Name $name .Values.mysql.service.port | trunc 63 | trimSuffix "-" -}}
+{{- printf "%s-%s:%d" .Release.Name $name .Values.mysql.service.port | trunc 63 | trimSuffix "-" -}}
 {{- end -}}
 
 {{/*
