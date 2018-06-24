@@ -11,13 +11,16 @@ replicaCount: 1
 
 image:
   repository: gogs/gogs
-  tag: 0.11.29
+  tag: 0.11.53
   pullPolicy: IfNotPresent
 
 service:
   ## Override the components name (defaults to service).
   ##
   # nameOverride:
+  serviceType: NodePort
+  httpNodePort: 30002
+  sshNodePort: 30022
 
   ## HTTP listen port.
   ## ref: https://gogs.io/docs/advanced/configuration_cheat_sheet
@@ -254,6 +257,7 @@ persistence:
   ## Persistent Volume Storage Size.
   ##
   size: 1Gi
+  storageClass: managed-nfs-storage
 
 
 
