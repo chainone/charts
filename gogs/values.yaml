@@ -262,6 +262,7 @@ persistence:
 
 
 mysql:
+  install: true
   ## mysql image version
   ## ref: https://hub.docker.com/r/library/mysql/tags/
   ##
