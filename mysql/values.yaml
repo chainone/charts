@@ -7,13 +7,13 @@ imageTag: "5.7.14"
 ## Specify password for root user
 ##
 ## Default: random 10 character string
-# mysqlRootPassword: testing
+mysqlRootPassword: 123qwe!@#
 
 ## Create a database user
 ##
-# mysqlUser:
+mysqlUser: gogs
 ## Default: random 10 character string
-# mysqlPassword:
+mysqlPassword: gogs
 
 ## Allow unauthenticated access, uncomment to enable
 ##
@@ -21,7 +21,7 @@ imageTag: "5.7.14"
 
 ## Create a database
 ##
-# mysqlDatabase:
+mysqlDatabase: gogs
 
 ## Specify an imagePullPolicy (Required)
 ## It's recommended to change this to 'Always' if the image tag is 'latest'
@@ -57,7 +57,7 @@ persistence:
   ##   set, choosing the default provisioner.  (gp2 on AWS, standard on
   ##   GKE, AWS & OpenStack)
   ##
-  # storageClass: "-"
+ storageClass: "managed-nfs-storage"
   accessMode: ReadWriteOnce
   size: 8Gi
 
@@ -68,15 +68,15 @@ resources:
   requests:
     memory: 256Mi
     cpu: 100m
+  limits:
+    memory: 2Gi
+    cpu: 2
 
 # Custom mysql configuration files used to override default mysql settings
 configurationFiles:
-#  mysql.cnf: |-
-#    [mysqld]
-#    skip-name-resolve
-#    ssl-ca=/ssl/ca.pem
-#    ssl-cert=/ssl/server-cert.pem
-#    ssl-key=/ssl/server-key.pem
+  mysql.cnf: |-
+    [mysqld]
+    default-time-zone = 'Asia/Shanghai'
 
 # Custom mysql init SQL files used to initialize the database
 initializationFiles:
@@ -90,9 +90,9 @@ initializationFiles:
 service:
   ## Specify a service type
   ## ref: https://kubernetes.io/docs/concepts/services-networking/service/#publishing-services---service-types
-  type: ClusterIP
+  type: NodePort
   port: 3306
-  # nodePort: 32000
+  nodePort: 32000
 
 ssl:
   enabled: false
