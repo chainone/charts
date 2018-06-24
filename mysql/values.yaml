@@ -76,7 +76,7 @@ resources:
 configurationFiles:
   mysql.cnf: |-
     [mysqld]
-    default-time-zone = 'Asia/Shanghai'
+    default-time-zone = '+8:00'
 
 # Custom mysql init SQL files used to initialize the database
 initializationFiles:
